@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter/http.dart';
 import 'package:my_flutter/test.dart';
 
 void main() {
@@ -126,7 +127,7 @@ class _ImageTapWidgetState extends State<ImageTapWidget> {
   void goToHomePage() {
     print("点击了图片");
     Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(builder: (context) => new HomePage()),
+        new MaterialPageRoute(builder: (context) => new HttpPage()),
         (Route<dynamic> rout) => true); //第二个参数标识是否关闭前一个页面，类似于Android的finish
   }
 
