@@ -33,11 +33,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          new Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          new Text('41'),
+          new FavoriteWidget(),
         ],
       ),
     );
@@ -104,6 +100,53 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
           ],
         ),
       ),
+    );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _FavoriteWidgetState();
+  }
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorite = true;
+  int _favoriteCount = 40;
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorite) {
+        _favoriteCount -= 1;
+        _isFavorite = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorite = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0.0),
+          child: IconButton(
+            icon: _isFavorite ? Icon(Icons.star) : Icon(Icons.star_border),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+
+        //当文本在40和41之间变化时，将文本放在SizedBox中并设置其宽度可防止出现明显的“跳跃” ，因为这些值具有不同的宽度。
+        SizedBox(
+          width: 18.0,
+          child: Text('$_favoriteCount'),
+        ),
+      ],
     );
   }
 }
