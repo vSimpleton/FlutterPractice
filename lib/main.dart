@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter/test.dart';
 
 void main() {
   runApp(MyApp());
@@ -83,22 +85,50 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
 
     return MaterialApp(
       title: "Hello World",
+      routes: <String, WidgetBuilder>{
+        //配置路径
+        '/HomePage': (BuildContext context) => new HomePage(),
+      },
       home: Scaffold(
         appBar: AppBar(
           title: Text('Hello World'),
         ),
         body: new ListView(
           children: [
-            new Image.asset(
-              'images/top.jpg',
-              height: 240.0,
-              fit: BoxFit.cover,
-            ),
+            new ImageTapWidget(),
             titleSection,
             buttonSection,
             textSection,
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ImageTapWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _ImageTapWidgetState();
+  }
+}
+
+class _ImageTapWidgetState extends State<ImageTapWidget> {
+  void goToHomePage() {
+    print("点击了图片");
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(builder: (context) => new HomePage()),
+        (Route<dynamic> rout) => true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: goToHomePage,
+      child: Image.asset(
+        'images/top.jpg',
+        height: 240.0,
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -141,7 +171,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
           ),
         ),
 
-        //当文本在40和41之间变化时，将文本放在SizedBox中并设置其宽度可防止出现明显的“跳跃” ，因为这些值具有不同的宽度。
+        //当文本在40和39之间变化时，将文本放在SizedBox中并设置其宽度可防止出现明显的“跳跃” ，因为这些值具有不同的宽度。
         SizedBox(
           width: 18.0,
           child: Text('$_favoriteCount'),
