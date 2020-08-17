@@ -13,10 +13,13 @@ class MyApp extends StatelessWidget {
       padding: const EdgeInsets.all(32.0),
       child: new Row(
         children: [
+          //自动占满剩余的空间，类似于Android的weight
           new Expanded(
+            //类似于LinearLayout的垂直布局
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //使用Container可以添加多种属性，具体可用ctrl+P查看
                 new Container(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: new Text(
@@ -35,11 +38,14 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
+
+          //使用有状态的控件
           new FavoriteWidget(),
         ],
       ),
     );
 
+    //创建tab button
     Column buildButtonColumn(IconData icon, String label) {
       Color color = Theme.of(context).primaryColor;
       return Column(
@@ -86,8 +92,9 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
     return MaterialApp(
       title: "Hello World",
       routes: <String, WidgetBuilder>{
-        //配置路径
+        //配置需要跳转的页面路径
         '/HomePage': (BuildContext context) => new HomePage(),
+        '/TestPage': (BuildContext context) => new TestPage(),
       },
       home: Scaffold(
         appBar: AppBar(
@@ -114,11 +121,13 @@ class ImageTapWidget extends StatefulWidget {
 }
 
 class _ImageTapWidgetState extends State<ImageTapWidget> {
+
+  //跳转到另一个页面
   void goToHomePage() {
     print("点击了图片");
     Navigator.of(context).pushAndRemoveUntil(
         new MaterialPageRoute(builder: (context) => new HomePage()),
-        (Route<dynamic> rout) => true);
+        (Route<dynamic> rout) => true); //第二个参数标识是否关闭前一个页面，类似于Android的finish
   }
 
   @override

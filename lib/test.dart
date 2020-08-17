@@ -15,3 +15,19 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+class TestPage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            title: "TestPage",
+            home: Scaffold(
+                    appBar: AppBar(
+                        title: Text("TestPage"),
+                    ),
+                    body: Center(
+                        child: Text("My TestPage"),
+                    )),
+        );
+    }
+}
