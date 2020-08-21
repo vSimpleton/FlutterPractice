@@ -95,7 +95,6 @@ Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situate
       routes: <String, WidgetBuilder>{
         //配置需要跳转的页面路径
         '/HomePage': (BuildContext context) => new HomePage(),
-        '/TestPage': (BuildContext context) => new TestPage(),
       },
       home: Scaffold(
         appBar: AppBar(
@@ -127,7 +126,7 @@ class _ImageTapWidgetState extends State<ImageTapWidget> {
   void goToHomePage() {
     print("点击了图片");
     Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(builder: (context) => new HttpPage()),
+        new MaterialPageRoute(builder: (context) => new HomePage()),
         (Route<dynamic> rout) => true); //第二个参数标识是否关闭前一个页面，类似于Android的finish
   }
 

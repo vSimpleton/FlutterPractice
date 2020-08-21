@@ -57,7 +57,7 @@ class _HttpButtonState extends State<HttpButton> {
             Container(
               margin: const EdgeInsets.only(right: 20),
               child: RaisedButton(
-                onPressed: useHttpToAskNet,
+                onPressed: openBaiDuHtml,
                 child: Text("打开百度"),
               ),
             ),
